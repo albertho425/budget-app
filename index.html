@@ -4,13 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container mt-5 text-center ">
       <div class="header">
-        <h1>Budget App</h1>
+        <h1>Finance and Currency App</h1>
       </div>
+
+    
+        <!-- <div class="d-flex justify-content-center mb-4 mt-4 pt-5 pb-5"> -->
+
+        
+        <div class="spinner-border" id="spinner" role="status" style="display:none;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        
+                    
+        <div class="row">
+            <div class="col-sm pt-5">
+                <div class="card mx-auto">
+                    <div class="card-header">
+                        Budget
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><img src="" class="currency-img"></h5>
+                        <p class="amount">$ <span id="budgetAmount">0</span></p>
+                    </div>
+                    </div>
+            </div>    
+
+            <div class="col-sm pt-5">
+                <div class="card mx-auto">
+                    <div class="card-header">
+                        Expenses
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><img src="" class="currency-img"></h5>
+                        <p class="exp-amount">$ <span id="expensesAmount">0</span></p>
+                    </div>
+                    </div>
+            </div>    
+
+            <div class="col-sm pt-5">
+                <div class="card mx-auto">
+                    <div class="card-header">
+                        Balance
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><img src="" class="currency-img"></h5>
+                        <p class="amount bala">$ <span id="balanceAmount">0</span></p>
+                    </div>
+                    </div>
+            </div>    
+        </div>  
+
+
+
       <div class="budget-section">
         <div class="budget col col-md col-sm">
           <h2>budget</h2>
@@ -95,6 +149,8 @@
         </div>
       </div>
     </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="main.js"></script>
   </body>
 </html>
