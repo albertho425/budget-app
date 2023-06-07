@@ -1,11 +1,4 @@
-@font-face {
-  font-family: "General";
-  src: url("./font/Nunito-ExtraLight.ttf");
-}
-@font-face {
-  font-family: "heading";
-  src: url("./font/Nunito-Bold.ttf");
-}
+
 body {
   margin: 0;
   padding: 0;
@@ -219,23 +212,28 @@ input {
   padding: 2px 16px;
 }
 
-/* Add Animation */
-@keyframes slideIn {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
+#myBtn {
+  font-size: 48px;
+  padding: 15px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+// /* Add Animation */
+// @keyframes slideIn {
+//   from {
+//     top: -300px;
+//     opacity: 0;
+//   }
+//   to {
+//     top: 0;
+//     opacity: 1;
+//   }
+// }
+
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
