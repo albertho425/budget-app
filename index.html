@@ -15,33 +15,25 @@
       <div class="header">
         <h1>Finance and Currency App</h1>
       </div>
-
-    
-        <!-- <div class="d-flex justify-content-center mb-4 mt-4 pt-5 pb-5"> -->
-
         
-        <div class="spinner-border" id="spinner" role="status" style="display:none;">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        
-                    
+      
         <div class="row">
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
                     <div class="card-header">
-                        Budget
+                      <h5 class="card-title">Budget</h5>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
-                        <p class="amount">$ <span id="budgetAmount">0</span></p>
+                        <p class="amount bala">$ <span id="budgetAmount">0</span></p>
                     </div>
                     </div>
             </div>    
-
+            
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
                     <div class="card-header">
-                        Expenses
+                      <h5 class="card-title">Expeses</h5>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
@@ -53,7 +45,7 @@
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
                     <div class="card-header">
-                        Balance
+                      <h5 class="card-title">Balance</h5>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
@@ -61,27 +53,9 @@
                     </div>
                     </div>
             </div>    
-        </div>  
-
-
-
-      <div class="budget-section">
-        <div class="budget col col-md col-sm">
-          <h2>budget</h2>
-          <img src="image/money-bag.svg" width="40" alt="" />
-          <p class="amount">$ <span id="budgetAmount">0</span></p>
-        </div>
-        <div class="expenses col col-md col-sm">
-          <h2>expenses</h2>
-          <img src="image/accounting.svg" width="40" alt="" />
-          <p class="exp-amount">$ <span id="expensesAmount">0</span></p>
-        </div>
-        <div class="balance col col-md col-sm">
-          <h2>balance</h2>
-          <img src="image/law.svg" width="40" alt="" />
-          <p class="amount bala">$ <span id="balanceAmount">0</span></p>
-        </div>
-      </div>
+        </div>    
+        
+      
       <div id="displayExpenses">
         <div class="budget-list">
           <div class="col">
@@ -105,11 +79,12 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>Budget Form</h2>
+          <span class="close"><i class="bi bi-x"></i></span>
+          <h5="modal-title">Budget Form</h5>
         </div>
         <div class="modal-body">
 
@@ -156,12 +131,16 @@
               <button type="submit">Save changes</button>
             </form>
           </div>
+
+        </div>  <!-- modal dialogue -->
+        
         </div>  <!-- modal body -->
         
       </div>
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
     <script src="main.js"></script>
   </body>
 </html>

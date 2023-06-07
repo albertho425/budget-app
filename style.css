@@ -20,14 +20,7 @@ h1 {
   font-family: "heading";
   padding-top: 10px;
 }
-.budget-section {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  width: 100%;
-  min-height: 160px;
-  font-weight: 900;
-}
+
 .budget-list {
   display: flex;
   justify-content: space-around;
@@ -166,34 +159,7 @@ input {
   font-size: 16px;
   font-weight: 400;
 }
-/* The Modal (background) */
-.modal {
-  display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  animation-name: fadeIn;
-  animation-duration: 0.4s;
-  text-transform: capitalize;
-  font-weight: 600;
-}
 
-/* Modal Content */
-.modal-content {
-  position: fixed;
-  top: 20%;
-  left: 25%;
-  background-color: #fefefe;
-  width: 50%;
-  min-height: 40px;
-  animation-name: slideIn;
-  animation-duration: 0.4s;
-}
 
 /* The Close Button */
 .close {
@@ -204,17 +170,21 @@ input {
   cursor: pointer;
   color: #000;
 }
-.modal-header {
-  padding: 2px 16px;
-  border-bottom: 2px solid gray;
-}
-.modal-body {
-  padding: 2px 16px;
-}
+// .modal-header {
+//   padding: 2px 16px;
+//   border-bottom: 2px solid gray;
+// }
+// .modal-body {
+//   padding: 2px 16px;
+// }
 
 #myBtn {
   font-size: 48px;
   padding: 15px;
+}
+
+.budget-list {
+  padding-top: 30px;
 }
 
 // /* Add Animation */

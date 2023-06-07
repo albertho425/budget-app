@@ -1,21 +1,35 @@
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
+
+/**
+ * Show the budget and expense form in a modal
+ */
+
 btn.onclick = function () {
   expName.value = "";
   expNumber.value = "";
   expenseForm.style.display = "block";
   editForm.style.display = "none";
   modal.style.display = "block";
+  console.log("button clicked");
 };
+
+/**
+ * Hide the modal
+ */
 span.onclick = function () {
   modal.style.display = "none";
+  console.log("hide the modal");
 };
+
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    console.log("clicked here");
   }
 };
+
 
 const amountInput = document.getElementById("number");
 const addForm = document.getElementById("addForm");
@@ -39,15 +53,22 @@ let expNumber = document.getElementById("expNumber");
 let id = 0;
 let details = [];
 
+
+/**
+ * Get the budget amount and validation 
+ * @param {*} amount 
+ */
+
 function getBudgetAmount(amount) {
   if (!amount) {
     amountInput.style.border = "1px solid #b80c09";
-    amountInput.placeholder = "input can not be empty";
+    amountInput.placeholder = "budget can not be empty";
     amountInput.style.color = "#b80c09";
+    //timeout before red validation becomes grey
     setTimeout(() => {
       amountInput.style.color = "#495057";
       amountInput.style.border = "1px solid gray";
-    }, 3000);
+    }, 5000);
   } else {
     budgetAmount.innerText = amount;
     balanceAmount.innerText = amount;
@@ -58,31 +79,40 @@ function getBudgetAmount(amount) {
   }
 }
 
+/**
+ * Get the expense and amount and store in an object
+ * @param {*} name 
+ * @param {*} number 
+ */
+
 function addExpenses(name, number) {
   if (!name.length || !number.length) {
     expName.style.border = "1px solid #b80c09";
-    expName.placeholder = "input can not be empty";
+    expName.placeholder = "Expense name can not be empty";
     expName.style.color = "#b80c09";
 
     expNumber.style.border = "1px solid #b80c09";
-    expNumber.placeholder = "input can not be empty";
+    expNumber.placeholder = "Expense amount can not be empty";
     expNumber.style.color = "#b80c09";
 
+    //timeout before red validation becomes grey
     setTimeout(() => {
       expName.style.color = "#495057";
       expName.style.border = "1px solid gray";
-      expName.placeholder = "input can not be empty";
+      expName.placeholder = "Expense name can not be empty";
 
-      expNumber.placeholder = "input can not be empty";
+      expNumber.placeholder = "Expense amount can not be empty";
       expNumber.style.border = "1px solid gray";
       expNumber.style.color = "#495057";
-    }, 3000);
+    }, 5000);
   } else {
+    // object containing ID, name, and number
     const userExp = {
       id: id,
       name: name,
       number: parseInt(number),
     };
+    console.log(userExp);
     details.push(userExp);
     displayExp(details);
     id++;
@@ -90,6 +120,11 @@ function addExpenses(name, number) {
     expNumber.value = "";
   }
 }
+
+/**
+ * Display the form template for editing or deleting an expense
+ * @param {*} details 
+ */
 
 function displayExp(details) {
   expValue.innerHTML = null;
@@ -111,6 +146,10 @@ function displayExp(details) {
   displayExpenses.style.display = "block";
 }
 
+/**
+ * Add the total amount of expenses
+ */
+
 function calcExpenses() {
   let totalExp = 0;
   for (i = 0; i < details.length; i++) {
@@ -120,16 +159,31 @@ function calcExpenses() {
   updateBalance();
 }
 
+/**
+ * Subtract the expenses amount from the budget
+ */
+
 function updateBalance() {
   balanceAmount.innerText =
     parseInt(budgetAmount.innerText) - parseInt(expensesAmount.innerText);
 }
 
+/**
+ * Delete an expense by the expense ID
+ * @param {*} id 
+ */
+
 function delExpenseDetails(id) {
   let index = details.findIndex((item) => item.id === id);
+  //remove 1 item starting at the index #
   details.splice(index, 1);
   displayExp(details);
 }
+
+/**
+ * Update an expense record's description and amount
+ * @param {*} id 
+ */
 
 function editExpDetails(id) {
   expenseForm.style.display = "none";
@@ -144,30 +198,57 @@ function editExpDetails(id) {
     }
   });
 }
-
+/**
+ * Get and display the expense name & amount
+ * @param {*} editExpName 
+ * @param {*} editExpNumber 
+ * @param {*} id 
+ */
 function getExpValue(editExpName, editExpNumber, id) {
   edited = details.findIndex((obj) => obj.id == id);
   details[edited].name = editExpName;
   details[edited].number = parseInt(editExpNumber);
   displayExp(details);
+  console.log("function getExpValue");
 }
+
+
+/**
+ * Hide the expense form and show the budget form
+ */
 
 function callBudget() {
   budgetform.style.display = "block";
   expenseForm.style.display = "none";
+  console.log("function callbudget");
 }
+
+/**
+ * Event listener for add/edit 
+ */
 
 saveEdit.addEventListener("submit", (e) => {
   e.preventDefault();
   getExpValue(editExpName.value, editExpNumber.value, saveEdit.children[2].id);
+  console.log("save/edit event listener");
 });
+
+/**
+ * Event listener for expense form
+ */
 
 expForm.addEventListener("submit", (e) => {
   e.preventDefault();
   addExpenses(expName.value, expNumber.value);
+  console.log("expense form event listener");
 });
+
+/**
+ * Event listener for adding a budget
+ */
 
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
   getBudgetAmount(amountInput.value);
+  console.log("add a budget event listner")
 });
