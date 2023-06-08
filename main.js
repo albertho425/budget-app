@@ -48,6 +48,7 @@ const displayExpenses = document.getElementById("displayExpenses");
 const expenseForm = document.getElementById("expense-form");
 const budgetform = document.getElementById("budgetform");
 
+let numOfExpenses = document.getElementById("numOfExpenses");
 let expName = document.getElementById("expName");
 let expNumber = document.getElementById("expNumber");
 let id = 0;
@@ -127,10 +128,14 @@ function addExpenses(name, number) {
  */
 
 function displayExp(details) {
+  console.log("The number of expenses is: " + details.length);
+  numOfExpenses.innerHTML = details.length;
+  console.log("numOfExpenses: " + numOfExpenses);
   expValue.innerHTML = null;
   for (i = 0; i < details.length; i++) {
     expValue.innerHTML += `
     <div class="expValue" id="${details[i].id}">
+      <div id="expTitleID" class="exp"><p>${details[i].id}</p></div>
       <div id="expTitleName" class="exp"><p>${details[i].name}</p></div>
       <div id="expValueAmount" class="exp"><p> <span>$ </span> ${details[i].number}</p></div>
       <div id="edite_delete">
@@ -191,6 +196,7 @@ function editExpDetails(id) {
   editForm.style.display = "block";
   details.findIndex((item) => {
     if (item.id === id) {
+      editExpId.value = item.id;
       editExpName.value = item.name;
       editExpNumber.value = item.number;
       saveEdit.children[2].id = item.id;
@@ -206,9 +212,11 @@ function editExpDetails(id) {
  */
 function getExpValue(editExpName, editExpNumber, id) {
   edited = details.findIndex((obj) => obj.id == id);
+  details[edited].id = id;
   details[edited].name = editExpName;
   details[edited].number = parseInt(editExpNumber);
   displayExp(details);
+  
   console.log("function getExpValue");
 }
 
