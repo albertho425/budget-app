@@ -132,6 +132,7 @@ function displayExp(details) {
   numOfExpenses.innerHTML = details.length;
   console.log("numOfExpenses: " + numOfExpenses);
   expValue.innerHTML = null;
+  
   for (i = 0; i < details.length; i++) {
     expValue.innerHTML += `
     <div class="expValue" id="${details[i].id}">
@@ -145,6 +146,7 @@ function displayExp(details) {
         </p>
       </div>
     </div>
+
   `;
   }
   calcExpenses();
@@ -260,3 +262,24 @@ addForm.addEventListener("submit", (e) => {
   getBudgetAmount(amountInput.value);
   console.log("add a budget event listner")
 });
+
+
+
+
+
+
+
+    // <tr>
+    //   <td><span class="expValue" id="${details[i].id}"></span></td>
+    //   <td><span class="" id="expTitleID">${details[i].id}</span></td>
+    //   <td><span id="expTitleName">${details[i].name}</span></td>
+    //   <td><span id="expValueAmount">${details[i].number}</span></td>
+    //   <td><span id="edite_delete"><button id="${details[i].id}" onclick="editExpDetails(${details[i].id})"> 
+    //                                 <i class="bi bi-pencil-square"></i>
+    //                               </button> 
+    //                               <button id="${details[i].id}" onclick="delExpenseDetails(${details[i].id})">
+    //                                 <i class="bi bi-trash3-fill"></i>
+    //                               </button>
+    //       </span>
+    //   </td>
+    // </tr>
