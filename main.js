@@ -135,18 +135,16 @@ function displayExp(details) {
   
   for (i = 0; i < details.length; i++) {
     expValue.innerHTML += `
-    <div class="expValue" id="${details[i].id}">
-      <div id="expTitleID" class="exp"><p>${details[i].id}</p></div>
-      <div id="expTitleName" class="exp"><p>${details[i].name}</p></div>
-      <div id="expValueAmount" class="exp"><p> <span>$ </span> ${details[i].number}</p></div>
-      <div id="edite_delete">
-        <p>
+    <tr>
+      <td id="expTitleID" class="exp">${details[i].id}</td>
+      <td id="expTitleName" class="exp">${details[i].name}</td>
+      <td id="expValueAmount" class="exp"> <span>$ </span> ${details[i].number}</td>
+      <td id="edite_delete">
+        
           <button id="${details[i].id}" onclick="editExpDetails(${details[i].id})"> <i class="bi bi-pencil-square"></i></button> 
           <button id="${details[i].id}" onclick="delExpenseDetails(${details[i].id})"><i class="bi bi-trash3-fill"></i></button>
-        </p>
-      </div>
-    </div>
-
+      </td>
+      </tr>    
   `;
   }
   calcExpenses();
@@ -262,24 +260,3 @@ addForm.addEventListener("submit", (e) => {
   getBudgetAmount(amountInput.value);
   console.log("add a budget event listner")
 });
-
-
-
-
-
-
-
-    // <tr>
-    //   <td><span class="expValue" id="${details[i].id}"></span></td>
-    //   <td><span class="" id="expTitleID">${details[i].id}</span></td>
-    //   <td><span id="expTitleName">${details[i].name}</span></td>
-    //   <td><span id="expValueAmount">${details[i].number}</span></td>
-    //   <td><span id="edite_delete"><button id="${details[i].id}" onclick="editExpDetails(${details[i].id})"> 
-    //                                 <i class="bi bi-pencil-square"></i>
-    //                               </button> 
-    //                               <button id="${details[i].id}" onclick="delExpenseDetails(${details[i].id})">
-    //                                 <i class="bi bi-trash3-fill"></i>
-    //                               </button>
-    //       </span>
-    //   </td>
-    // </tr>
