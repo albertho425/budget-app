@@ -1,3 +1,9 @@
+:root {
+  --blue: #408EC6;
+  --maroon: #7A2048;
+  --indigo: #1E2761;
+  --green: #2C5F2D;
+}
 
 body {
   margin: 0;
@@ -5,7 +11,7 @@ body {
   width: 100%;
   font-family: "General";
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--blue);
 }
 .container {
   min-height: 80vh;
@@ -30,10 +36,10 @@ h1 {
   font-size: 20px;
 }
 .exp-amount {
-  color: #b80c09;
+  color: var(--maroon);
 }
 .amount {
-  color: #317b22;
+  color: var(--green);
 }
 .col {
   width: 40%;
@@ -53,7 +59,7 @@ h1 {
 .toggle button {
   border: none;
   border-radius: 600px;
-  background: #04458f;
+  background: var(--maroon);
   padding: 14px 20px;
   color: #ffffff;
   font-size: 30px;
@@ -79,7 +85,7 @@ input {
   color: #495057;
 }
 .budget-list .exp p {
-  color: #b80c09;
+  color: var(--maroon);
   font-size: 18px;
 }
 #displayExpenses {
@@ -111,7 +117,7 @@ input {
   border: none;
 }
 .budget-form button {
-  background: rgb(1, 83, 1);
+  background:var(--green);
   border: none;
   border-radius: 6px;
   color: #ffffff;
@@ -149,7 +155,7 @@ input {
   font-weight: 400;
 }
 .expense-form button {
-  background: #b80c09;
+  background: var(--maroon);
   border: none;
   border-radius: 6px;
   color: #ffffff;
@@ -168,7 +174,7 @@ input {
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  color: #000;
+  
 }
 // .modal-header {
 //   padding: 2px 16px;
@@ -181,6 +187,7 @@ input {
 #myBtn {
   font-size: 48px;
   padding: 15px;
+  color: var(--maroon);
 }
 
 .budget-list {
@@ -190,6 +197,17 @@ input {
 .table-results {
   width: 60%;
 }
+
+.card-header {
+  background-color: var(--maroon);
+  color: white;
+}
+
+.modal-header {
+  background-color: var(--indigo);
+  color: white;
+}
+
 
 // /* Add Animation */
 // @keyframes slideIn {
