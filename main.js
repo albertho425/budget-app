@@ -5,9 +5,11 @@ const span = document.getElementsByClassName("close")[0];
 //local storage
 let data = [];
 
+// expenses array
 let details = [];
 
-let income = [];
+// income array
+let incomeArray = [];
 
 
 // let textInput = document.getElementById("textInput");
@@ -59,20 +61,27 @@ const editExpNumber = document.getElementById("editExpNumber");
 
 const expForm = document.getElementById("expForm");
 const incForm = document.getElementById("incomeForm");
+
 const expensesAmount = document.getElementById("expensesAmount");
 const incomeAmount = document.getElementById("incomeAmount");
+
 const expValue = document.getElementById("expValue");
 const incomeValue = document.getElementById("incomeValue");
+
 const displayExpenses = document.getElementById("displayExpenses");
 const displayIncome = document.getElementById("displayIncome");
+
 const expenseForm = document.getElementById("expense-form");
 const incomeForm = document.getElementById("income-form");
 const budgetform = document.getElementById("budgetform");
 
 let numOfExpenses = document.getElementById("numOfExpenses");
-let expName = document.getElementById("expName");
-let expNumber = document.getElementById("expNumber");
+let numOfIncome = document.getElementById("numOfIncome");
+let incomeName = document.getElementById("incomeName");
+let incomeNumber = document.getElementById("incomeNumber");
+
 let id = 0;
+let incomeId = 0;
 
 
 
@@ -138,11 +147,6 @@ function addExpenses(name, number) {
     details.push(userExp);
     displayExp(details);
 
-    //store in local storage;
-    data.push(userExp);
-    localStorage.setItem("data", JSON.stringify(data));
-    console.log(JSON.stringify(data));
-
     //increase the counter and clear form
     id++;
     expName.value = "";
@@ -180,24 +184,25 @@ function addIncome(name, number) {
     }, 5000);
   } else {
     // object containing ID, name, and number
-    const userIncome = {
-      id: id,
-      name: name,
-      number: parseInt(number),
-    };
-    //push to array
-    income.push(userIncome);
-    displayInc()
+      const userIncome = {
+        id: incomeId,
+        name: name,
+        number: parseInt(number),
+      };
+      //push to array
+      incomeArray.push(userIncome);
+      displayInc(incomeArray);
 
-    // //store in local storage;
-    // data.push(userIncome);
-    // localStorage.setItem("data", JSON.stringify(data));
-    // console.log(JSON.stringify(data));
+      // //store in local storage;
+      // data.push(userIncome);
+      // localStorage.setItem("data", JSON.stringify(data));
+      // console.log(JSON.stringify(data));
 
-    //increase the counter and clear form
-    id++;
-    incomeName.value = "";
-    incomeNumber.value = "";
+      //increase the counter and clear form
+      incomeId++;
+      console.log("Income ID: " + incomeId);
+      incomeName.value = "";
+      incomeNumber.value = "";
 
 
   }
@@ -232,28 +237,34 @@ function displayExp(details) {
   displayExpenses.style.display = "block";
 }
 
-function displayInc(details) {
-  console.log("The number of income is: " + details.length);
-  // numOfExpenses.innerHTML = details.length;
+
+
+
+function displayInc(income) {
+  console.log("display income function");
+  console.log("income array length: " + incomeArray.length);
+  // console.log("The number of income is: " + income.length);
+  numOfIncome.innerHTML = incomeArray.length;
   // console.log("numOfExpenses: " + numOfExpenses);
   incomeValue.innerHTML = null;
   
-  for (i = 0; i < details.length; i++) {
+  for (i = 0; i < incomeArray.length; i++) {
     incomeValue.innerHTML += `
     <tr>
-      <td id="expTitleID" class="exp">${details[i].id}</td>
-      <td id="expTitleName" class="exp">${details[i].name}</td>
-      <td id="expValueAmount" class="exp"> <span>$ </span> ${details[i].number}</td>
+      <td id="expTitleID" class="exp">${incomeArray[i].id}</td>
+      <td id="expTitleName" class="exp">${incomeArray[i].name}</td>
+      <td id="expValueAmount" class="exp"> <span>$ </span> ${incomeArray[i].number}</td>
       <td id="edite_delete">
         
-          <button id="${details[i].id}" onclick="editExpDetails(${details[i].id})"> <i class="bi bi-pencil-square"></i></button> 
-          <button id="${details[i].id}" onclick="delExpenseDetails(${details[i].id})"><i class="bi bi-trash3-fill"></i></button>
+          <button id="${incomeArray[i].id}" onclick="editIncomeDetails(${incomeArray[i].id})"> <i class="bi bi-pencil-square"></i></button> 
+          <button id="${incomeArray[i].id}" onclick="deleteIncomeDetails(${incomeArray[i].id})"><i class="bi bi-trash3-fill"></i></button>
       </td>
       </tr>    
   `;
   }
-  calcExpenses();
+  calcIncome();
   displayIncome.style.display = "block";
+  
 }
 
 
@@ -267,8 +278,20 @@ function calcExpenses() {
     totalExp = details[i].number + totalExp;
   }
   expensesAmount.innerText = totalExp;
-  incomeAmount.inner
+  // incomeAmount.inner
   updateBalance();
+
+}
+
+function calcIncome() {
+
+  let totalInc = 0;
+  for (incomeId = 0; incomeId < incomeArray.length; incomeId++) {
+    totalInc = incomeArray[incomeId].number + totalInc;
+  }
+  incomeAmount.innerText = totalInc;
+  updateBalance();
+
 }
 
 /**
@@ -277,7 +300,7 @@ function calcExpenses() {
 
 function updateBalance() {
   balanceAmount.innerText =
-    parseInt(budgetAmount.innerText) - parseInt(expensesAmount.innerText);
+    parseInt(budgetAmount.innerText) - parseInt(expensesAmount.innerText) + parseInt(incomeAmount.innerText);
 }
 
 /**
@@ -345,6 +368,8 @@ function getExpValue(editExpName, editExpNumber, id) {
 }
 
 
+
+
 /**
  * Hide the expense form and show the budget form
  */
@@ -353,6 +378,18 @@ function callBudget() {
   budgetform.style.display = "block";
   expenseForm.style.display = "none";
   console.log("function callbudget");
+}
+
+/**
+ * 
+ */
+
+function callIncome() {
+  console.log("function callbudget");
+  budgetform.style.display = "none";
+  expenseForm.style.display = "none"
+  incomeForm.style.display = "block";
+  
 }
 
 /**
@@ -376,6 +413,21 @@ expForm.addEventListener("submit", (e) => {
 });
 
 /**
+ * Event listener for adding an income
+ */
+
+incomeForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("add an income event listner");
+  console.log(incomeName.value);
+  console.log(incomeNumber.value);
+  addIncome(incomeName.value, incomeNumber.value);
+  // console.log("add income: " + incomeName.value + " " + incomeNumber.value);
+  
+});
+
+
+/**
  * Event listener for adding a budget
  */
 
@@ -385,23 +437,3 @@ addForm.addEventListener("submit", (e) => {
   console.log("add a budget event listner")
 });
 
-
-/**
- * Push data into local storage
- */
-
-let acceptData = () => {
-  data.push({
-    expenseID: textInput.value,
-    expenseName: dateInput.value,
-    expenseAmount: textarea.value,
-  });
-
-  console.log("accepting task: " + textInput.value);
-  console.log("accepting date: " + dateInput.value);
-  console.log("accepting description: " + textarea.value);
-  
-  localStorage.setItem("data", JSON.stringify(data));
-
-  console.log(JSON.stringify(data));
-}
