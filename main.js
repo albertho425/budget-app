@@ -2,6 +2,22 @@ const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 
+//local storage
+let data = [];
+
+let details = [];
+
+let income = [];
+
+
+// let textInput = document.getElementById("textInput");
+// let dateInput = document.getElementById("dateInput");
+// let progressInput = document.getElementById("progressInput");
+// let textarea = document.getElementById("textarea");
+// expenseID
+// expenseName
+// expenseAmount
+
 /**
  * Show the budget and expense form in a modal
  */
@@ -42,17 +58,22 @@ const editExpValue = document.getElementById("editExpValue");
 const editExpNumber = document.getElementById("editExpNumber");
 
 const expForm = document.getElementById("expForm");
+const incForm = document.getElementById("incomeForm");
 const expensesAmount = document.getElementById("expensesAmount");
+const incomeAmount = document.getElementById("incomeAmount");
 const expValue = document.getElementById("expValue");
+const incomeValue = document.getElementById("incomeValue");
 const displayExpenses = document.getElementById("displayExpenses");
+const displayIncome = document.getElementById("displayIncome");
 const expenseForm = document.getElementById("expense-form");
+const incomeForm = document.getElementById("income-form");
 const budgetform = document.getElementById("budgetform");
 
 let numOfExpenses = document.getElementById("numOfExpenses");
 let expName = document.getElementById("expName");
 let expNumber = document.getElementById("expNumber");
 let id = 0;
-let details = [];
+
 
 
 /**
@@ -113,12 +134,72 @@ function addExpenses(name, number) {
       name: name,
       number: parseInt(number),
     };
-    console.log(userExp);
+    //push to array
     details.push(userExp);
     displayExp(details);
+
+    //store in local storage;
+    data.push(userExp);
+    localStorage.setItem("data", JSON.stringify(data));
+    console.log(JSON.stringify(data));
+
+    //increase the counter and clear form
     id++;
     expName.value = "";
     expNumber.value = "";
+
+
+  }
+}
+
+/**
+ * Get the expense and amount and store in an object
+ * @param {*} name 
+ * @param {*} number 
+ */
+
+function addIncome(name, number) {
+  if (!name.length || !number.length) {
+    incomeName.style.border = "1px solid #b80c09";
+    incomeName.placeholder = "Income name can not be empty";
+    incomeName.style.color = "#b80c09";
+
+    incomeNumber.style.border = "1px solid #b80c09";
+    incomeNumber.placeholder = "Income amount can not be empty";
+    incomeNumber.style.color = "#b80c09";
+
+    //timeout before red validation becomes grey
+    setTimeout(() => {
+      incomeName.style.color = "#495057";
+      incomeName.style.border = "1px solid gray";
+      incomeName.placeholder = "Income name can not be empty";
+
+      incomeNumber.placeholder = "Income amount can not be empty";
+      incomeNumber.style.border = "1px solid gray";
+      incomeNumber.style.color = "#495057";
+    }, 5000);
+  } else {
+    // object containing ID, name, and number
+    const userIncome = {
+      id: id,
+      name: name,
+      number: parseInt(number),
+    };
+    //push to array
+    income.push(userIncome);
+    displayInc()
+
+    // //store in local storage;
+    // data.push(userIncome);
+    // localStorage.setItem("data", JSON.stringify(data));
+    // console.log(JSON.stringify(data));
+
+    //increase the counter and clear form
+    id++;
+    incomeName.value = "";
+    incomeNumber.value = "";
+
+
   }
 }
 
@@ -151,6 +232,31 @@ function displayExp(details) {
   displayExpenses.style.display = "block";
 }
 
+function displayInc(details) {
+  console.log("The number of income is: " + details.length);
+  // numOfExpenses.innerHTML = details.length;
+  // console.log("numOfExpenses: " + numOfExpenses);
+  incomeValue.innerHTML = null;
+  
+  for (i = 0; i < details.length; i++) {
+    incomeValue.innerHTML += `
+    <tr>
+      <td id="expTitleID" class="exp">${details[i].id}</td>
+      <td id="expTitleName" class="exp">${details[i].name}</td>
+      <td id="expValueAmount" class="exp"> <span>$ </span> ${details[i].number}</td>
+      <td id="edite_delete">
+        
+          <button id="${details[i].id}" onclick="editExpDetails(${details[i].id})"> <i class="bi bi-pencil-square"></i></button> 
+          <button id="${details[i].id}" onclick="delExpenseDetails(${details[i].id})"><i class="bi bi-trash3-fill"></i></button>
+      </td>
+      </tr>    
+  `;
+  }
+  calcExpenses();
+  displayIncome.style.display = "block";
+}
+
+
 /**
  * Add the total amount of expenses
  */
@@ -161,6 +267,7 @@ function calcExpenses() {
     totalExp = details[i].number + totalExp;
   }
   expensesAmount.innerText = totalExp;
+  incomeAmount.inner
   updateBalance();
 }
 
@@ -183,6 +290,17 @@ function delExpenseDetails(id) {
   //remove 1 item starting at the index #
   details.splice(index, 1);
   displayExp(details);
+
+  // id.parentElement.parentElement.remove();
+
+  // // remove from array
+  // data.splice(id.parentElement.parentElement.id, 1);
+
+  // // update local storage
+  // localStorage.setItem("data", JSON.stringify(data));
+
+  // console.log(data);
+
 }
 
 /**
@@ -201,6 +319,12 @@ function editExpDetails(id) {
       editExpNumber.value = item.number;
       saveEdit.children[2].id = item.id;
       modal.style.display = "block";
+
+      let selectedTask = id.parentElement.parentElement;
+      console.log(selectedTask);
+
+
+
     }
   });
 }
@@ -260,3 +384,24 @@ addForm.addEventListener("submit", (e) => {
   getBudgetAmount(amountInput.value);
   console.log("add a budget event listner")
 });
+
+
+/**
+ * Push data into local storage
+ */
+
+let acceptData = () => {
+  data.push({
+    expenseID: textInput.value,
+    expenseName: dateInput.value,
+    expenseAmount: textarea.value,
+  });
+
+  console.log("accepting task: " + textInput.value);
+  console.log("accepting date: " + dateInput.value);
+  console.log("accepting description: " + textarea.value);
+  
+  localStorage.setItem("data", JSON.stringify(data));
+
+  console.log(JSON.stringify(data));
+}

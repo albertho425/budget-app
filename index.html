@@ -29,6 +29,19 @@
                     </div>
                     </div>
             </div>    
+
+            <div class="col-sm pt-5">
+              <div class="card mx-auto">
+                  <div class="card-header">
+                    <h5 class="card-title">Income</h5>
+                  </div>
+                  <div class="card-body">
+                      <h5 class="card-title"><img src="" class="currency-img"></h5>
+                      <p class="exp-amount">$ <span id="incomeAmount">0</span></p>
+                  </div>
+                  </div>
+          </div>    
+
             
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
@@ -41,6 +54,8 @@
                     </div>
                     </div>
             </div>    
+
+
 
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
@@ -68,6 +83,21 @@
           </table>
         </div><!-- budget-list -->
     </div>  <!-- displayExpenses -->
+
+    <!-- table list of income -->
+    <div id="displayIncome">
+      <div class="col-sm pt-5">
+
+
+        <h3 class="pt-5 mt-5"><span class="results">Num of income: </span><span id="numOfIncome"></span></h3><br>
+      </div>
+      <div class="budget-list" id="">
+        <table class="table table-results" id="incomeValue">
+        
+        </table>
+      </div>
+  </div>  
+  
     
     
     <div class="toggle">
@@ -114,6 +144,26 @@
               Back to add budget ->
             </button>
           </div>
+
+          <!-- Modal form for adding an income -->
+
+          <div class="income-form" id="income-form">
+            <form action="" id="incomeForm">
+              <div class="">
+                <label for="">please enter your income name</label> <br />
+                <input type="text" id="incomeName" />
+              </div>
+              <div class="">
+                <label for="">please enter income amount</label> <br />
+                <input type="number" id="incomeNumber" />
+              </div>
+              <button type="submit" id="submitIncome">Add Income</button>
+            </form>
+            <button onclick="callBudget()" id="bug">
+              Back to add budget ->
+            </button>
+          </div>
+
 
           <!-- Modal form for editing -->
 
