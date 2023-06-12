@@ -2,23 +2,11 @@ const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 
-//local storage
-let data = [];
-
 // expenses array
 let details = [];
 
 // income array
 let incomeArray = [];
-
-
-// let textInput = document.getElementById("textInput");
-// let dateInput = document.getElementById("dateInput");
-// let progressInput = document.getElementById("progressInput");
-// let textarea = document.getElementById("textarea");
-// expenseID
-// expenseName
-// expenseAmount
 
 /**
  * Show the budget and expense form in a modal
@@ -28,7 +16,9 @@ btn.onclick = function () {
   expName.value = "";
   expNumber.value = "";
   expenseForm.style.display = "block";
+  incomeForm.style.display = "block";
   editForm.style.display = "none";
+  editIncomeForm.display = "none";
   modal.style.display = "block";
   console.log("button clicked");
 };
@@ -54,27 +44,38 @@ const addForm = document.getElementById("addForm");
 const budgetAmount = document.getElementById("budgetAmount");
 const balanceAmount = document.getElementById("balanceAmount");
 
+//Editing expenses form
 const editForm = document.getElementById("editForm");
 const saveEdit = document.getElementById("saveEdit");
 const editExpValue = document.getElementById("editExpValue");
 const editExpNumber = document.getElementById("editExpNumber");
 
+//Editing income form
+const editIncomeForm = document.getElementById("editIncomeForm");
+const saveEditIncome = document.getElementById("saveEditIncome");
+const editIncomeId = document.getElementById("editIncomeId");
+const editIncomeName = document.getElementById("editIncomeName");
+const editIncomeNumber = document.getElementById("editIncomeNumber");
+
+// Expenses form
 const expForm = document.getElementById("expForm");
-const incForm = document.getElementById("incomeForm");
-
 const expensesAmount = document.getElementById("expensesAmount");
-const incomeAmount = document.getElementById("incomeAmount");
-
 const expValue = document.getElementById("expValue");
+
+// Income form
+const incForm = document.getElementById("incomeForm");
+const incomeAmount = document.getElementById("incomeAmount");
 const incomeValue = document.getElementById("incomeValue");
 
 const displayExpenses = document.getElementById("displayExpenses");
 const displayIncome = document.getElementById("displayIncome");
 
+// All forms
 const expenseForm = document.getElementById("expense-form");
 const incomeForm = document.getElementById("income-form");
 const budgetform = document.getElementById("budgetform");
 
+// Number of expenses and income
 let numOfExpenses = document.getElementById("numOfExpenses");
 let numOfIncome = document.getElementById("numOfIncome");
 let incomeName = document.getElementById("incomeName");
@@ -106,7 +107,9 @@ function getBudgetAmount(amount) {
     expenseForm.style.display = "block";
     budgetform.style.display = "none";
     editForm.style.display = "none";
+    
     amountInput.value = "";
+    updateBalance();
   }
 }
 
@@ -193,11 +196,6 @@ function addIncome(name, number) {
       incomeArray.push(userIncome);
       displayInc(incomeArray);
 
-      // //store in local storage;
-      // data.push(userIncome);
-      // localStorage.setItem("data", JSON.stringify(data));
-      // console.log(JSON.stringify(data));
-
       //increase the counter and clear form
       incomeId++;
       console.log("Income ID: " + incomeId);
@@ -238,9 +236,11 @@ function displayExp(details) {
 }
 
 
+/**
+ * Display the list of income, the number of income transactions, and update the total balance.
+ */
 
-
-function displayInc(income) {
+function displayInc() {
   console.log("display income function");
   console.log("income array length: " + incomeArray.length);
   // console.log("The number of income is: " + income.length);
@@ -299,8 +299,13 @@ function calcIncome() {
  */
 
 function updateBalance() {
+  console.log("updating the balance");
+  console.log("budget amount is: " + budgetAmount.innerText);
+  console.log("income amount is: " + incomeAmount.innerText);
+  console.log("expense amount is: " + expensesAmount.innerText);
   balanceAmount.innerText =
-    parseInt(budgetAmount.innerText) - parseInt(expensesAmount.innerText) + parseInt(incomeAmount.innerText);
+  parseInt(incomeAmount.innerText) + parseInt(budgetAmount.innerText) - parseInt(expensesAmount.innerText);
+     
 }
 
 /**
@@ -314,15 +319,6 @@ function delExpenseDetails(id) {
   details.splice(index, 1);
   displayExp(details);
 
-  // id.parentElement.parentElement.remove();
-
-  // // remove from array
-  // data.splice(id.parentElement.parentElement.id, 1);
-
-  // // update local storage
-  // localStorage.setItem("data", JSON.stringify(data));
-
-  // console.log(data);
 
 }
 
@@ -332,8 +328,11 @@ function delExpenseDetails(id) {
  */
 
 function editExpDetails(id) {
+  console.log("Editing an expense");
+  incomeForm.style.display = "none";
   expenseForm.style.display = "none";
   budgetform.style.display = "none";
+  editIncomeForm.style.display = "none";
   editForm.style.display = "block";
   details.findIndex((item) => {
     if (item.id === id) {
@@ -342,15 +341,38 @@ function editExpDetails(id) {
       editExpNumber.value = item.number;
       saveEdit.children[2].id = item.id;
       modal.style.display = "block";
+    }
+  });
+}
 
-      let selectedTask = id.parentElement.parentElement;
-      console.log(selectedTask);
+/**
+ * Update an expense record's description and amount
+ * @param {*} id 
+ */
 
+function editIncomeDetails(incomeId) {
 
+  console.log("Editing the income form");
+  expenseForm.style.display = "none";
+  incomeForm.style.display = "none";
+  budgetform.style.display = "none";
+  editForm.style.display = "none";
+  editIncomeForm.style.display = "block";
+
+  incomeArray.findIndex((item) => {
+    console.log("insite the if statement");
+    if (item.id === incomeId) {
+      editIncomeId.value = item.id;
+      editIncomeName.value = item.name;
+      editIncomeNumber.value = item.number;
+      saveEdit.children[2].id = item.id;
+      modal.style.display = "block";
 
     }
   });
 }
+
+
 /**
  * Get and display the expense name & amount
  * @param {*} editExpName 
@@ -367,6 +389,22 @@ function getExpValue(editExpName, editExpNumber, id) {
   console.log("function getExpValue");
 }
 
+/**
+ * Get and display the expense name & amount
+ * @param {*} editExpName 
+ * @param {*} editExpNumber 
+ * @param {*} id 
+ */
+function getIncomeValue(editExpName, editExpNumber, id) {
+  console.log("function getIncomeValue");
+  edited = incomeArray.findIndex((obj) => obj.id == id);
+  incomeArray[edited].id = id;
+  incomeArray[edited].name = editExpName;
+  incomeArray[edited].number = parseInt(editExpNumber);
+  displayInc();
+  
+  
+}
 
 
 
@@ -393,14 +431,27 @@ function callIncome() {
 }
 
 /**
- * Event listener for add/edit 
+ * Event listener for editng an expense
  */
 
 saveEdit.addEventListener("submit", (e) => {
+  console.log("edit an expense event listener");
   e.preventDefault();
   getExpValue(editExpName.value, editExpNumber.value, saveEdit.children[2].id);
-  console.log("save/edit event listener");
+  
 });
+
+/**
+ * Event listener for editng an income
+ */
+
+saveEditIncome.addEventListener("submit", (e) => {
+  console.log("edit an income event listener");
+  e.preventDefault();
+  getIncomeValue(editIncomeName.value, editIncomeNumber.value, saveEditIncome.children[2].id);
+  
+});
+
 
 /**
  * Event listener for expense form
@@ -437,3 +488,20 @@ addForm.addEventListener("submit", (e) => {
   console.log("add a budget event listner")
 });
 
+
+
+/**
+ * Load some default values
+ * 
+ */
+
+function loadDefaultNumbers() {
+
+  addIncome("Work","1000");
+  addIncome("Side hustle", "500")
+  addIncome("Consulting","500");
+  addExpenses("Groceries","100");
+  addExpenses("Rent","1000");
+  addExpenses("Food","500");
+getBudgetAmount("1800");
+}
