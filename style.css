@@ -92,6 +92,12 @@ input {
   width: 100%;
   display: none;
 }
+
+#displayIncome {
+  width: 100%;
+  display: none;
+}
+
 .expValue {
   display: flex;
   justify-content: space-around;
@@ -167,6 +173,19 @@ input {
 }
 
 
+#income-form button {
+  background: var(--green);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 10px 30px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 400;
+
+}
+
 /* The Close Button */
 .close {
   color: white;
@@ -207,7 +226,6 @@ input {
   background-color: var(--indigo);
   color: white;
 }
-
 
 // /* Add Animation */
 // @keyframes slideIn {

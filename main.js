@@ -4,9 +4,11 @@ const span = document.getElementsByClassName("close")[0];
 
 // expenses array
 let details = [];
+let id = 0;
 
 // income array
 let incomeArray = [];
+let incomeId = 0;
 
 /**
  * Show the budget and expense form in a modal
@@ -81,8 +83,6 @@ let numOfIncome = document.getElementById("numOfIncome");
 let incomeName = document.getElementById("incomeName");
 let incomeNumber = document.getElementById("incomeNumber");
 
-let id = 0;
-let incomeId = 0;
 
 
 
@@ -146,12 +146,18 @@ function addExpenses(name, number) {
       name: name,
       number: parseInt(number),
     };
+
+    console.log("*** expense ID from object is: " + userExp.id + " ***");
+
+
     //push to array
     details.push(userExp);
     displayExp(details);
 
     //increase the counter and clear form
+    console.log("The array index before increment is: " + id);
     id++;
+    console.log("The array index after increment is: " + id);
     expName.value = "";
     expNumber.value = "";
 
@@ -192,16 +198,18 @@ function addIncome(name, number) {
         name: name,
         number: parseInt(number),
       };
+      console.log("*** income ID from object is: " + userIncome.id + " ***");
       //push to array
       incomeArray.push(userIncome);
-      displayInc(incomeArray);
+      displayInc();
 
       //increase the counter and clear form
+
+      console.log("The income array index before increment is: " + incomeId);
       incomeId++;
-      console.log("Income ID: " + incomeId);
+      console.log("The income array index after increment is: " + incomeId);
       incomeName.value = "";
       incomeNumber.value = "";
-
 
   }
 }
@@ -243,21 +251,21 @@ function displayExp(details) {
 function displayInc() {
   console.log("display income function");
   console.log("income array length: " + incomeArray.length);
-  // console.log("The number of income is: " + income.length);
+ 
   numOfIncome.innerHTML = incomeArray.length;
-  // console.log("numOfExpenses: " + numOfExpenses);
+ 
   incomeValue.innerHTML = null;
   
-  for (i = 0; i < incomeArray.length; i++) {
+  for (index = 0; index < incomeArray.length; index++) {
     incomeValue.innerHTML += `
     <tr>
-      <td id="expTitleID" class="exp">${incomeArray[i].id}</td>
-      <td id="expTitleName" class="exp">${incomeArray[i].name}</td>
-      <td id="expValueAmount" class="exp"> <span>$ </span> ${incomeArray[i].number}</td>
+      <td id="" class="exp">${incomeArray[index].id}</td>
+      <td id="" class="exp">${incomeArray[index].name}</td>
+      <td id="" class="exp"> <span>$ </span> ${incomeArray[index].number}</td>
       <td id="edite_delete">
         
-          <button id="${incomeArray[i].id}" onclick="editIncomeDetails(${incomeArray[i].id})"> <i class="bi bi-pencil-square"></i></button> 
-          <button id="${incomeArray[i].id}" onclick="deleteIncomeDetails(${incomeArray[i].id})"><i class="bi bi-trash3-fill"></i></button>
+          <button id="${incomeArray[index].id}" onclick="editIncomeDetails(${incomeArray[index].id})"> <i class="bi bi-pencil-square"></i></button> 
+          <button id="${incomeArray[index].id}" onclick="deleteIncomeDetails(${incomeArray[index].id})"><i class="bi bi-trash3-fill"></i></button>
       </td>
       </tr>    
   `;
@@ -283,11 +291,15 @@ function calcExpenses() {
 
 }
 
+/**
+ *  Calculate the total amount of income, and call the update balance function
+ */
+
 function calcIncome() {
 
   let totalInc = 0;
-  for (incomeId = 0; incomeId < incomeArray.length; incomeId++) {
-    totalInc = incomeArray[incomeId].number + totalInc;
+  for (incomeArrayIndex = 0; incomeArrayIndex < incomeArray.length; incomeArrayIndex++) {
+    totalInc = incomeArray[incomeArrayIndex].number + totalInc;
   }
   incomeAmount.innerText = totalInc;
   updateBalance();
@@ -321,6 +333,7 @@ function delExpenseDetails(id) {
 
 
 }
+
 
 /**
  * Update an expense record's description and amount
@@ -360,12 +373,18 @@ function editIncomeDetails(incomeId) {
   editIncomeForm.style.display = "block";
 
   incomeArray.findIndex((item) => {
-    console.log("insite the if statement");
+    console.log("item.id is: " + item.id);
+    console.log("incomeId is: " + incomeId);
     if (item.id === incomeId) {
       editIncomeId.value = item.id;
+      console.log("editIncomeId is " + editIncomeId.value);
       editIncomeName.value = item.name;
+      console.log("editIncomeName is " + editIncomeName.value);
       editIncomeNumber.value = item.number;
-      saveEdit.children[2].id = item.id;
+      console.log("editIncomeValue is " + editIncomeNumber.value);
+      saveEditIncome.children[2].id = item.id;
+      console.log("saveEditIncome.children[2].id: " + saveEditIncome.children[2].id);
+      
       modal.style.display = "block";
 
     }
@@ -395,12 +414,12 @@ function getExpValue(editExpName, editExpNumber, id) {
  * @param {*} editExpNumber 
  * @param {*} id 
  */
-function getIncomeValue(editExpName, editExpNumber, id) {
+function getIncomeValue(editIncomeName, editIncomeValue, id) {
   console.log("function getIncomeValue");
   edited = incomeArray.findIndex((obj) => obj.id == id);
   incomeArray[edited].id = id;
-  incomeArray[edited].name = editExpName;
-  incomeArray[edited].number = parseInt(editExpNumber);
+  incomeArray[edited].name = editIncomeName;
+  incomeArray[edited].number = parseInt(editIncomeValue);
   displayInc();
   
   
@@ -497,11 +516,12 @@ addForm.addEventListener("submit", (e) => {
 
 function loadDefaultNumbers() {
 
-  addIncome("Work","1000");
-  addIncome("Side hustle", "500")
-  addIncome("Consulting","500");
-  addExpenses("Groceries","100");
+  addIncome("Work","2000");
+  addIncome("Side hustle", "1000")
+  addIncome("Rental Income","2000");
+  
+  addExpenses("Groceries","500");
   addExpenses("Rent","1000");
   addExpenses("Food","500");
-getBudgetAmount("1800");
+  getBudgetAmount("1000");
 }
