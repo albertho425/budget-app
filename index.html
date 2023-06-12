@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-sm pt-5">
                 <div class="card mx-auto">
-                    <div class="card-header">
+                    <div class="card-header income">
                       <h5 class="card-title">Budget</h5>
                     </div>
                     <div class="card-body">
@@ -32,12 +32,12 @@
 
             <div class="col-sm pt-5">
               <div class="card mx-auto">
-                  <div class="card-header">
+                  <div class="card-header income">
                     <h5 class="card-title">Income</h5>
                   </div>
                   <div class="card-body">
                       <h5 class="card-title"><img src="" class="currency-img"></h5>
-                      <p class="exp-amount">$ <span id="incomeAmount">0</span></p>
+                      <p class="income-amount">$ <span id="incomeAmount">0</span></p>
                   </div>
                   </div>
           </div>    
@@ -72,7 +72,7 @@
         
       <!-- table list of expenses -->
       <div id="displayExpenses">
-        <div class="col-sm pt-5">
+        <div class="col-sm">
           <h6 class="pt-5 mt-5"><span class="results">Num of expenses: </span><span id="numOfExpenses"></span></h6><br>
         </div>
         <div class="budget-list" id="">
@@ -81,13 +81,14 @@
           </table>
         </div><!-- budget-list -->
     </div>  <!-- displayExpenses -->
-
+    <br><br>
+    
     <!-- table list of income -->
     <div id="displayIncome">
-      <div class="col-sm pt-5"></div>
-        <h6 class="pt-5 mt-5"><span class="results">Num of income: </span><span id="numOfIncome"></span></h6><br>
+      <div class="col-sm pt-5 mt-5"></div>
+        <h6 class=""><span class="results">Num of income: </span><span id="numOfIncome"></span></h6><br>
       </div>
-      <div class="budget-list" id="">
+      <div class="income-list" id="">
         <table class="table table-results" id="incomeValue">
         
         </table>

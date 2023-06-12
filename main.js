@@ -250,18 +250,16 @@ function displayExp(details) {
 
 function displayInc() {
   console.log("display income function");
-  console.log("income array length: " + incomeArray.length);
- 
   numOfIncome.innerHTML = incomeArray.length;
- 
+  console.log("income array length: " + incomeArray.length);
   incomeValue.innerHTML = null;
   
   for (index = 0; index < incomeArray.length; index++) {
     incomeValue.innerHTML += `
     <tr>
-      <td id="" class="exp">${incomeArray[index].id}</td>
-      <td id="" class="exp">${incomeArray[index].name}</td>
-      <td id="" class="exp"> <span>$ </span> ${incomeArray[index].number}</td>
+      <td id="expTitleID" class="exp">${incomeArray[index].id}</td>
+      <td id="expTitleName" class="exp">${incomeArray[index].name}</td>
+      <td id="expValueAmount" class="exp"> <span>$ </span> ${incomeArray[index].number}</td>
       <td id="edite_delete">
         
           <button id="${incomeArray[index].id}" onclick="editIncomeDetails(${incomeArray[index].id})"> <i class="bi bi-pencil-square"></i></button> 
@@ -330,6 +328,21 @@ function delExpenseDetails(id) {
   //remove 1 item starting at the index #
   details.splice(index, 1);
   displayExp(details);
+
+
+}
+
+/**
+ * Delete an income by income ID
+ * @param {*} id 
+ */
+
+function deleteIncomeDetails(id) {
+  console.log("*** Deleting an expense");
+  let index = details.findIndex((item) => item.id === id);
+  //remove 1 item starting at the index #
+  incomeArray.splice(index, 1);
+  displayInc();
 
 
 }
@@ -523,5 +536,6 @@ function loadDefaultNumbers() {
   addExpenses("Groceries","500");
   addExpenses("Rent","1000");
   addExpenses("Food","500");
+
   getBudgetAmount("1000");
 }

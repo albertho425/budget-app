@@ -35,9 +35,24 @@ h1 {
   height: 70px;
   font-size: 20px;
 }
+
+.income-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  height: 70px;
+  font-size: 20px;
+}
+
 .exp-amount {
   color: var(--maroon);
 }
+
+.income-amount {
+  
+}
+
 .amount {
   color: var(--green);
 }
@@ -213,6 +228,10 @@ input {
   padding-top: 30px;
 }
 
+.income-list {
+  padding-top: 30px;
+}
+
 .table-results {
   width: 60%;
 }
@@ -227,23 +246,14 @@ input {
   color: white;
 }
 
-// /* Add Animation */
-// @keyframes slideIn {
-//   from {
-//     top: -300px;
-//     opacity: 0;
-//   }
-//   to {
-//     top: 0;
-//     opacity: 1;
-//   }
-// }
+.bi-pencil-square {
+  color: var(--green);
+}
 
-// @keyframes fadeIn {
-//   from {
-//     opacity: 0;
-//   }
-//   to {
-//     opacity: 1;
-//   }
-// }
+.bi-trash3-fill {
+  color: var(--maroon);
+}
+
+.income {
+  background-color: var(--green);
+}
