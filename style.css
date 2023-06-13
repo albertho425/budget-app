@@ -257,3 +257,25 @@ input {
 .income {
   background-color: var(--green);
 }
+
+bi.bi-x {
+  font-size: 40px;
+}
+
+.card-small {
+  width: 20rem;
+}
+
+.income-list {
+  padding-top: 100px
+}
+
+.red {
+  color: var(--maroon);
+  font-size: 22px;
+}
+
+.green {
+  color: var(--green);
+  font-size: 22px;
+}

@@ -107,6 +107,8 @@ function getBudgetAmount(amount) {
     expenseForm.style.display = "block";
     budgetform.style.display = "none";
     editForm.style.display = "none";
+    editIncomeForm.style.display = "none";
+    incomeForm.style.display = "none;"
     
     amountInput.value = "";
     updateBalance();
@@ -224,6 +226,7 @@ function displayExp(details) {
   numOfExpenses.innerHTML = details.length;
   console.log("numOfExpenses: " + numOfExpenses);
   expValue.innerHTML = null;
+  expValue.innerHTML += `<tr><td colspan="4"><span class="red">Expenses</span></td></tr>`;
   
   for (i = 0; i < details.length; i++) {
     expValue.innerHTML += `
@@ -253,6 +256,8 @@ function displayInc() {
   numOfIncome.innerHTML = incomeArray.length;
   console.log("income array length: " + incomeArray.length);
   incomeValue.innerHTML = null;
+  incomeValue.innerHTML += `<tr><td colspan="4"><span class="green">Income</span></td></tr>`;
+                
   
   for (index = 0; index < incomeArray.length; index++) {
     incomeValue.innerHTML += `

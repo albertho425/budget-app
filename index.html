@@ -13,7 +13,7 @@
   <body onload="loadDefaultNumbers();">
     <div class="container mt-5 text-center ">
       <div class="header">
-        <h1>Finance and Currency App</h1>
+        <h1>Finance App</h1>
       </div>
         
       
@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
-                        <p class="amount bala">$ <span id="budgetAmount">0</span></p>
+                        <p class="amount bala">$ <span id="budgetAmount">0</span></p><br>
                     </div>
                     </div>
             </div>    
@@ -38,6 +38,8 @@
                   <div class="card-body">
                       <h5 class="card-title"><img src="" class="currency-img"></h5>
                       <p class="income-amount">$ <span id="incomeAmount">0</span></p>
+                      <p class="income-amount">Transactions: <span id="numOfIncome"></span></p>
+
                   </div>
                   </div>
           </div>    
@@ -51,6 +53,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
                         <p class="exp-amount">$ <span id="expensesAmount">0</span></p>
+                        <p class="income-amount">Transactions:  <span id="numOfExpenses"></span></p>
                     </div>
                     </div>
             </div>    
@@ -64,16 +67,18 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><img src="" class="currency-img"></h5>
-                        <p class="amount bala">$ <span id="balanceAmount">0</span></p>
+                        <p class="amount bala">$ <span id="balanceAmount">0</span></p><br>
+                        
                     </div>
                     </div>
             </div>    
         </div>    
+
         
       <!-- table list of expenses -->
       <div id="displayExpenses">
-        <div class="col-sm">
-          <h6 class="pt-5 mt-5"><span class="results">Num of expenses: </span><span id="numOfExpenses"></span></h6><br>
+        <div class="col-sm pt-5 mt-5">
+        
         </div>
         <div class="budget-list" id="">
           <table class="table table-results" id="expValue">
@@ -86,7 +91,6 @@
     <!-- table list of income -->
     <div id="displayIncome">
       <div class="col-sm pt-5 mt-5"></div>
-        <h6 class=""><span class="results">Num of income: </span><span id="numOfIncome"></span></h6><br>
       </div>
       <div class="income-list" id="">
         <table class="table table-results" id="incomeValue">
@@ -118,7 +122,7 @@
           <div class="budget-form" id="budgetform">
             <form id="addForm">
               
-              <input type="number" id="number" placeholder="Budget amount" /> <br />
+              <input class="form-control" type="number" id="number" placeholder="Budget amount" /> <br />
               <button type="submit">Add Budget</button>
             </form>
           </div>
@@ -129,11 +133,11 @@
             <form action="" id="expForm">
               <div class="">
                 
-                <input type="text" id="expName" placeholder="Expense name" />
+                <input class="form-control" type="text" id="expName" placeholder="Expense name" />
               </div>
               <div class="">
                 
-                <input type="number" id="expNumber" placeholder="Expense amount" />
+                <input type="number" class="form-control" id="expNumber" placeholder="Expense amount" />
               </div>
               <button type="submit" id="submitExpen">Add expense</button>
             </form>
@@ -148,11 +152,11 @@
             <form action="" id="incomeForm">
               <div class="">
                 
-                <input type="text" id="incomeName" placeholder="Income name" />
+                <input class="form-control" type="text" id="incomeName" placeholder="Income name" />
               </div>
               <div class="">
                 
-                <input type="number" id="incomeNumber" placeholder="Income number" />
+                <input class="form-control" type="number" id="incomeNumber" placeholder="Income number" />
               </div>
               <button type="submit" id="">Add Income</button>
             </form>
@@ -166,16 +170,16 @@
             
             <form action="" id="saveEdit">
               <div class="">
-                <label for="">Expense ID</label><br>
-                <input type="text" id="editExpId" readonly />
+                <label class="form-label" for="">Expense ID</label><br>
+                <input class="form-control" type="text" id="editExpId" readonly />
               </div>
               <div class="">
-                <label for="">Expense Name:</label><br>
-                <input type="text" id="editExpName" placeholder="Expense name" />
+                <label class="form-label" for="">Expense Name:</label><br>
+                <input class="form-control" type="text" id="editExpName" placeholder="Expense name" />
               </div>
               <div class="">
-                <label for="">Expense Amount:</label><br>
-                <input type="number" id="editExpNumber" placeholder="Expense amount" />
+                <label class="form-label" for="">Expense Amount:</label><br>
+                <input class="form-control" type="number" id="editExpNumber" placeholder="Expense amount" />
               </div>
               <button type="submit">Save changes</button>
             </form>
@@ -187,16 +191,16 @@
             
             <form action="" id="saveEditIncome">
               <div class="">
-                <label for="">Income ID</label>
-                <input type="text" id="editIncomeId" readonly />
+                <label class="form-label" for="">Income ID</label><br>
+                <input class="form-control" type="text" id="editIncomeId" readonly />
               </div>
               <div class="">
-                <label for="">Edit your expense</label>
-                <input type="text" id="editIncomeName" />
+                <label class="form-label" for="">Edit your expense</label><br>
+                <input class="form-control" type="text" id="editIncomeName" />
               </div>
               <div class="">
-                <label for="">Edit expense amount</label>
-                <input type="number" id="editIncomeNumber" />
+                <label class="form-label" for="">Edit expense amount</label><br>
+                <input class="form-control" type="number" id="editIncomeNumber" />
               </div>
               <button type="submit">Save changes</button>
             </form>
