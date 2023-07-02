@@ -3,10 +3,11 @@
 This is a JavaScript web app that allows you to add/edit/delete budget,income, and expenses. As you add, the balance and totals updates. All of your expenses and incomes are editable or deletable afterwards.
 
 ## Home screen
-<img width="1680" alt="budget_app_homepage" src="https://github.com/maplesyrupweb/js-crud-finance-with-api/assets/73809301/0ee87ef2-2e73-49c3-add9-c2adcbc3dfed">
+<img width="1920" alt="finance_main" src="https://github.com/maplesyrupweb/finance-app-with-API/assets/73809301/c09fbb92-210e-4432-8c13-a86dd204efd6">
+
 
 ## Add income, expense, or budget
-<img width="1680" alt="budget_app_add_screen" src="https://github.com/maplesyrupweb/js-crud-finance-with-api/assets/73809301/9989345f-d9db-4ad4-bb36-6300aab6c2f0">
+<img width="1920" alt="finance_edit" src="https://github.com/maplesyrupweb/finance-app-with-API/assets/73809301/818001fd-b6e0-48fa-bfee-d04ff22e9517">
 
 ## Full Features
 - Add income
